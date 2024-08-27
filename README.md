@@ -133,7 +133,191 @@ This project is a comprehensive online food delivery platform developed with a f
 
 **Payment Integration:** Integrated Stripe for payment processing and verified transactions.
 
+## Api Reference
 
+### Add Food Items
+
+```http
+POST/api/food/add
+```
+
+#### Request Body
+
+| Field       | Type     | Value    
+| :---:       | :---:    | :---: 
+| name        | String   | demo1   
+| description | String   | This is demo description   
+| price       | Number   | 10   
+| category    | String   | non-veg   
+
+#### Response
+
+{
+  "success": true,
+  "message": "Food Added"
+}
+
+### Show Food List
+
+```http
+POST/api/food/list
+```
+
+#### Response
+
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "66c1be1f8d2693eb6c857a5c",
+      "name": "Green salad",
+      "description": "Food provides essential nutrients for overall health and well-being",
+      "price": 20,
+      "image": "1723973151868food_1.png",
+      "category": "Salad",
+      "__v": 0
+    },
+    {
+      "_id": "66c1be518d2693eb6c857a60",
+      "name": "Veg salad",
+      "description": "Food provides essential nutrients for overall health and well-being",
+      "price": 10,
+      "image": "1723973201433food_2.png",
+      "category": "Salad",
+      "__v": 0
+    },
+    {
+      "_id": "66cd553631d24e002243d5a0",
+      "name": "demo1",
+      "description": "This is demo description",
+      "price": 10,
+      "image": "1724732726532food_2.png",
+      "category": "non-veg",
+      "__v": 0
+    }
+  ]
+}
+
+### Remove Food Items
+
+```http
+POST/api/food/remove
+```
+
+#### Request Body
+
+| Field       | Type     | Value    
+| :---:       | :---:    | :---: 
+| id        | String   | 66c1be1f8d2693eb6c857a5c   
+
+#### Response
+
+{
+  "success": true,
+  "message": "Food Removed"
+}
+
+### Show Cart Details
+
+```http
+POST/api/cart/get
+```
+
+#### Response
+
+{
+  "success": true,
+  "cartData": {
+    "66c1be1f8d2693eb6c857a5c": 10
+  }
+}
+
+### User Order List
+
+```http
+POST/api/order/userorders
+```
+
+#### Response
+
+{
+  "success": true,
+  "data": []
+}
+
+### Check User Order Status
+
+```http
+POST/api/order/status
+```
+
+#### Request Body
+{
+  "orderId": "66ca1eeacdd45d7f1d398b1e",
+  "status": "Out of Delivery"
+}
+
+#### Response
+
+{
+  "success": true,
+  "message": "Status Updated"
+}
+
+### Show Order List
+
+```http
+GET/api/order/list
+``` 
+
+#### Response
+
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "66ca1eeacdd45d7f1d398b1e",
+      "userId": "66c20422d422165744ce1067",
+      "items": [
+        {
+          "_id": "66c1be1f8d2693eb6c857a5c",
+          "name": "Green salad",
+          "description": "Food provides essential nutrients for overall health and well-being",
+          "price": 20,
+          "image": "1723973151868food_1.png",
+          "category": "Salad",
+          "__v": 0,
+          "quantity": 1
+        },
+        {
+          "_id": "66c1be518d2693eb6c857a60",
+          "name": "Veg salad",
+          "description": "Food provides essential nutrients for overall health and well-being",
+          "price": 10,
+          "image": "1723973201433food_2.png",
+          "category": "Salad",
+          "__v": 0,
+          "quantity": 4
+        }
+      ],
+      "amount": 62,
+      "address": {
+        "firstName": "Joy",
+        "lastName": "Dutta",
+        "email": "joy@gmail.com",
+        "street": "dhd",
+        "city": "ss",
+        "state": "ff",
+        "zipcode": "700101",
+        "country": "India",
+        "phone": "9870014256"
+      },
+      "status": "Out of Delivery",
+      "date": "2024-08-24T15:02:27.213Z",
+      "payment": false,
+      "__v": 0
+    },
+}
 ## Getting Started
 
 To start this project
